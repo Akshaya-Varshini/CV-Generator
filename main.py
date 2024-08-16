@@ -8,9 +8,19 @@ def generate_cv_pdf():
     address = entry_address.get()
     website = entry_website.get()
     skills = entry_skills.get("1.0", END).strip().split('\n')
-    work_experience_line = entry_experience.get("1.0", END).strip().split('\n')
-    for line in work_experience_line:
+    work_experience = []
+    education = []
+    work_experience_lines = entry_experience.get("1.0", END).strip().split('\n')
+    for line in work_experience_lines:
         title, description = line.split(":")
+        work_experience.append({'title': title.strip(), 'description': description.strip()})
+
+    education_lines = entry_education.get("1.0", END).strip().split('\n')
+    for line in education_lines:
+        degree, university = line.split(":")
+        education.append({'degree': degree.strip(), 'university': university.strip()})
+    print(work_experience)
+    print(education)
 
 
 window = Tk()
